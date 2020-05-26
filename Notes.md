@@ -9,7 +9,6 @@ VASP uses DFT to solve the quantum problem in materials with periodic boundary c
 
 More theory here: https://www.vasp.at/wiki/images/5/5d/VASP_lecture_Basics.pdf
 
-__
 
 ## VASP Input Files 
 
@@ -36,14 +35,14 @@ Selective Dyn
 Cartesian
 0 0 0  T T T
 ```
-1: Header (comment).
-2: Overall scaling constant.
-3-6: Bravais matrix.
-4: Name(s) of the atom(s).
-5: Number of the atoms (of each atom type).
-6: (optional: selective dynamics).
-7: Specifies which coordinate system is used ("cartesian" or "direct").
-8-x: Positions of the atoms.
+1. Header (comment).
+2. Overall scaling constant.
+3. Bravais matrix 
+4. Name(s) of the atom(s).
+5. Number of the atoms (of each atom type).
+6. (optional: selective dynamics).
+7. Specifies which coordinate system is used ("cartesian" or "direct").
+8. Onwards: Positions of the atoms.
 
 ### KPOINTS
 - k-point mesh 
@@ -58,17 +57,17 @@ G (M)
 0.  0.  0.
 
 ```
-1: Header (comment).
-2: Specifies the k mesh generation type. {\displaystyle N_{{\overrightarrow {k}}}=0}N_{{\overrightarrow {k}}}=0: automatic generation scheme.
-3: {\displaystyle \Gamma }\Gamma -centered (Monkhorst-Pack) grid.
-4: Number of subdivisions in each direction.
-5: Optional shift of the mesh.
+1. Header (comment).
+2. Specifies the k mesh generation type. (?)
+3. Gamma -centered (Monkhorst-Pack) grid. (?)
+4. Number of subdivisions in each direction.
+5. Optional shift of the mesh.
 
 
 ### POTCAR
 - Pseudopotential (PP) file: Information on PP and XC functional to run the calculation 
 - Data required to generate the PP, number of valence electrons, atomic mass, energy cut-off 
-- If the cell contains different atomic species, the corresponding POTCAR files will then have to be concatenated - in the __same order as the atomic species given in the POSCAR__
+- If the cell contains different atomic species, the corresponding POTCAR files will then have to be concatenated - in the **same order as the atomic species given in the POSCAR**
 
 
 

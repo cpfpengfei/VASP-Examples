@@ -1,9 +1,9 @@
 # Lattice constant optimization for FCC Si 
 
 ## Steps 
-- Set the INCAR, POSCAR, and KPOINTS files 
-- Get the POTCAR for Si 
-- Create a bash script in pbs format 
+1. Create the INCAR, POSCAR, and KPOINTS files 
+2. Get the POTCAR for Si (from PP library, concatenate if molecule and be consistent with POSCAR sequence)
+3. Create a bash script in pbs format 
 
 ## PBS script 
 
@@ -30,3 +30,7 @@ done
 cat SUMMARY.fcc
 
 ```
+- For this script, it assumes POSCAR file is not present so there is a for loop to construct the POSCAR.
+- And for every loop, it runs VASP with mpirun -np 2 first then from the OSZICAR file extract the values and adds a line to SUMMARY.fcc 
+- Lastly, concatenate the SUMMARY.fcc file 
+

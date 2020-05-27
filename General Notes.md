@@ -13,13 +13,13 @@ More theory here: https://www.vasp.at/wiki/images/5/5d/VASP_lecture_Basics.pdf
 ## VASP Input Files 
 
 ### INCAR
-- Parameters that define the calculation 
+- The control parameters that define the calculation 
 - Global break condition, energy cutoff, smearing, ionic and geometric relaxation params 
 - Specify what to do: scf calculations, DOS, dielectric properties
 - Params to fulfill requirements concerning required precision, requested convergence, calculation time, etc 
 
 ### POSCAR
-- Periodic simulation cell 
+- Periodic simulation cell / Contains information on unit cell and basis atoms
 - Information on the system's geometry or structure 
 
 Example:
@@ -66,6 +66,7 @@ G (M)
 
 ### POTCAR
 - Pseudopotential (PP) file: Information on PP and XC functional to run the calculation 
+- From Pseudopotential library in VASP (cant find online since it is commercial)
 - Data required to generate the PP, number of valence electrons, atomic mass, energy cut-off 
 - If the cell contains different atomic species, the corresponding POTCAR files will then have to be concatenated - in the **same order as the atomic species given in the POSCAR**
 

@@ -1,0 +1,41 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=4:mpiprocs=4
+#PBS -l walltime=2:0:0
+#PBS -P 11001317
+
+
+export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
+export OMP_NUM_THREADS=1
+
+cd ${PBS_O_WORKDIR}
+
+module load intel/19.0.0.117
+
+export VASP="${HOME}/apps/bin/vasp_std"
+
+############################ Script Start ##############################
+
+rm WAVECAR SUMMARY.fcc
+
+for i in  3.5 3.6 3.7 3.8 3.9 4.0 4.1 4.2 4.3 ; do
+	cat >POSCAR <<!
+fcc:
+   $i
+ 0.5 0.5 0.0
+ 0.0 0.5 0.5
+ 0.5 0.0 0.5
+   1
+cartesian
+0 0 0
+!
+echo "a= $i"
+
+mpirun  $VASP
+
+E=`awk '/F=/ {print $0}' OSZICAR` ; echo $i $E  >>SUMMARY.fcc
+
+done
+
+cat SUMMARY.fcc
+
+############################ Script End   ##############################

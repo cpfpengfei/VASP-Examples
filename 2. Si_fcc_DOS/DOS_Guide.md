@@ -3,6 +3,7 @@
 With help from 
 - https://www.vasp.at/wiki/index.php/Fcc_Si_DOS#Calculation
 - https://www.youtube.com/watch?v=ohDguVFDPlc
+- http://image.sciencenet.cn/olddata/kexue.com.cn/bbs/upload/20083418325986.pdf
 
 ## 4 Steps:
 1. Structural relaxation (cell and atoms) --> generate CONTCAR needed for steps 2 - 4

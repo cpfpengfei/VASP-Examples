@@ -70,6 +70,12 @@ G (M)
 - Data required to generate the PP, number of valence electrons, atomic mass, energy cut-off 
 - If the cell contains different atomic species, the corresponding POTCAR files will then have to be concatenated - in the **same order as the atomic species given in the POSCAR**
 
+```
+# Example to concatenate Al with Mg
+
+cat POTCAR_Al POTCAR_Mg >> POTCAR
+
+```
 
 
 ## Output Files 
@@ -87,3 +93,26 @@ CHGCAR
 
 
 ## Systems 
+
+***
+
+## Well-converged calculations 
+1. Choose XC functional:
+- Accuracy: LDA < GGA < Hybrid 
+
+2. KPOINTS
+- Do Kpoint convergence; accuracy increases with number of kpoints 
+- For metals, choose a smearing technique (ISMEAR in INCAR)
+    * Tetrahedron method = Good for very accurate total energy calculations 
+    * Gaussian, Methfessel-Paxton etc = Good for ionic and geometric relaxations 
+
+    * ISMEAR = N (N>0): method of Methfessel-Paxton order N
+    * ISMEAR = 0 for Gaussian, -1 for Fermi, -2 for partial occupancies read from WAVECAR or INCAR
+    * ISMEAR = -5 for tetrahedron method (for DOS calculations + very accurate total energy calculations (no relaxation in metals))
+
+3. Energy Cutoff (ENCUT)
+- Controls the completeness of the planewave basis set 
+
+4. Pseudopotentials (POTCAR default)
+- Replaces nucleus and core electrons with fixed effective potential 
+

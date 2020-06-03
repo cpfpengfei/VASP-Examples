@@ -133,4 +133,5 @@ reciprocal
 ```
 - 10 = 10 points between each line 
 - First line is L to G, then G to X, then X to U, then K to G
+- All points with weight 1
 - Need to understand KPOINTS more fundamentally...

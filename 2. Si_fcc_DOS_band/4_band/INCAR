@@ -1,0 +1,10 @@
+# initialization
+System = fcc Si 
+ISTART = 0; ICHARG = 11 # to read charge density from CHGCAR file
+
+# electronic optimization
+ENCUT  = 250 # energy cut off 
+ISMEAR = 0; SIGMA = 0.1;
+
+# DOS stuff 
+LORBIT = 11 # output DOSCAR and PROCAR (total DOS and partial DOS)

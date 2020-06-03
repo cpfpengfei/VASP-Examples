@@ -1,0 +1,15 @@
+# initialization
+System = fcc Si 
+ISTART = 0 # for new calculation
+ICHARG = 2
+
+# electronic optimization
+ENCUT  = 250 # energy cut off 
+ISMEAR = -5 # Tetrahedron method
+LORBIT = 11 
+
+# Ionic relaxation 
+IBRION = 2 # use CG algorithm to converge 
+ISIF = 3 # to relax atoms and cell 
+NSW = 100 # ionic steps max 
+EDIFFG = -0.02 # forces smaller 0.02 A/eV, convergence criteria 

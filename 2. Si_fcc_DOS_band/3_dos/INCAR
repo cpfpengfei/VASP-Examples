@@ -1,0 +1,12 @@
+# initialization
+System = fcc Si 
+ISTART = 1; ICHARG = 11 # to read charge density from CHGCAR file
+
+# electronic optimization
+ENCUT  = 250 # energy cut off 
+ISMEAR = -5 # Tetrahedron method
+
+# DOS stuff 
+LORBIT = 11 # output DOSCAR and PROCAR
+NEDOS = 1000 $ num points of DOS
+# EMIN, EMAX, and NBANDS can be neglected for defaults by VASP

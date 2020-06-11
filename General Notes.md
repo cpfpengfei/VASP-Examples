@@ -66,6 +66,7 @@ G (M)
 
 ### POTCAR
 - Pseudopotential (PP) file: Information on PP and XC functional to run the calculation 
+- Replaces nucleus and core electrons with fixed effective potential
 - From Pseudopotential library in VASP (cant find online since it is commercial)
 - Data required to generate the PP, number of valence electrons, atomic mass, energy cut-off 
 - If the cell contains different atomic species, the corresponding POTCAR files will then have to be concatenated - in the **same order as the atomic species given in the POSCAR**
@@ -77,13 +78,17 @@ cat POTCAR_Al POTCAR_Mg >> POTCAR
 
 ```
 
-
 ## Output Files 
-CONTCAR 
-- Position of the system after calculation  
+stdout
+- Command line standard outputs will show each iteration, E total energy, and dE change of total energy;
+- The final E0 total ground state energy displayed 
+- All these data are also written in the OSZICAR 
 
 OSZICAR
 - Data of electronic steps and ionic steps 
+
+CONTCAR 
+- Position of the system after calculation (POSCAR after calculation)
 
 OUTCAR
 - Complete run output including the input data

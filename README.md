@@ -1,5 +1,6 @@
-# VASP-Examples
-VASP examples and tutorials
+# Compilation of VASP notes, tutorials and examples
+- Notes and examples are all referenced from different sources 
+- These resources are compiled for my personal learning as a beginner
 
 ## Scripts 
 - cleanup.sh: General script to clean up directory, particularly output files

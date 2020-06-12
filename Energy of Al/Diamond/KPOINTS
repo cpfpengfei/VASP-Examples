@@ -1,0 +1,5 @@
+Automatic mesh
+0         ! indicate 0 for automatic generation
+Monkhorst-Pack 
+4  4  4   ! subdivisions N1, N2, and N3 along reciprocal lattice vectors
+0. 0. 0.  ! No shift     

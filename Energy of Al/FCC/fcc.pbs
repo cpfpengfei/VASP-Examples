@@ -48,25 +48,27 @@ echo $V $E >> EvsV
 
 done
 
-cat <<! | evfit
-FCC
-4
-EvsA
-evfit.4
-!
+# TODO: evfit to be implemented in python script 
 
-Emin=`grep Emin evfit.4|awk '{print $2}'`
-A0=`grep A0 evfit.4|awk '{print $2}'`
-K0=`grep A0 evfit.4|awk '{print $4}'`
+# cat <<! | evfit
+# FCC
+# 4
+# EvsA
+# evfit.4
+# !
 
-tail +5 evfit.4|awk '{print $1,"\t", $2,"\t", $3}' > grace
+# Emin=`grep Emin evfit.4|awk '{print $2}'`
+# A0=`grep A0 evfit.4|awk '{print $2}'`
+# K0=`grep A0 evfit.4|awk '{print $4}'`
 
-echo "Data for Al in FCC" >> SUMMARY.fcc
-echo "=================================================" >> SUMMARY.fcc
-echo "Equilibrium Energy per Atom    = $Emin" >>SUMMARY.fcc
-echo "Equilibrium lattice constant   = $A0" >>SUMMARY.fcc
-echo "Bulk Modulus                   = $K0" >>SUMMARY.fcc
-echo "Total CPU time (sec)           = $totT" >>SUMMARY.fcc
+# tail +5 evfit.4|awk '{print $1,"\t", $2,"\t", $3}' > grace
+
+# echo "Data for Al in FCC" >> SUMMARY.fcc
+# echo "=================================================" >> SUMMARY.fcc
+# echo "Equilibrium Energy per Atom    = $Emin" >>SUMMARY.fcc
+# echo "Equilibrium lattice constant   = $A0" >>SUMMARY.fcc
+# echo "Bulk Modulus                   = $K0" >>SUMMARY.fcc
+# echo "Total CPU time (sec)           = $totT" >>SUMMARY.fcc
 
 
 ############################ Script End ##############################

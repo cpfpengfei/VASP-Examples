@@ -1,0 +1,40 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=4:mpiprocs=4
+#PBS -l walltime=2:0:0
+#PBS -P 11001317
+
+export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
+export OMP_NUM_THREADS=1
+
+cd ${PBS_O_WORKDIR}
+
+module load intel/19.0.0.117
+
+export VASP="${HOME}/apps/bin/vasp_std"
+
+############################ Script Start ##############################
+for a in `seq 3 1 25`
+do 
+
+# edit KPOINTS
+cat >KPOINTS<< !
+Automatic mesh
+0
+Monkhorst-pack
+$a $a $a
+0 0 0
+!
+
+# run FCC script as usual
+./fcc.pbs
+
+# merge summary files together
+echo $a x $a x $a >> kpoints_summary
+cat SUMMARY.fcc >> kpoints_summary
+
+t = `grep time SUMMARY.fcc|awk '{print $6}'`
+echo $a $t >> cpu_time
+
+done
+
+############################ Script End ##############################

@@ -1,0 +1,3 @@
+ISMEAR = -5   # tetrahedron method 
+ENCUT = 360 
+EDIFF = 1e-6  # global break condition for the electronic SC loop

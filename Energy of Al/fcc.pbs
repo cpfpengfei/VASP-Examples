@@ -1,0 +1,72 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=4:mpiprocs=4
+#PBS -l walltime=2:0:0
+#PBS -P 11001317
+
+export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
+export OMP_NUM_THREADS=1
+
+cd ${PBS_O_WORKDIR}
+
+module load intel/19.0.0.117
+
+export VASP="${HOME}/apps/bin/vasp_std"
+
+############################ Script Start ##############################
+
+rm EvsA EvsV evfit.4 grace SUMMARY.fcc
+
+totT=0
+
+##### Create POSCAR #####
+# range of lattice parameter
+for a in `seq -w 3.5 0.1 4.5`; do
+    echo "a= $a" 
+    cat >POSCAR <<!
+Al FCC
+1.0
+$a  0.00  0.00                   
+0.00   $a 0.00
+0.00   0.00  $a
+4
+Direct
+0.00000000 0.00000000 0.0000000
+0.50000000 0.00000000 0.5000000
+0.50000000 0.50000000 0.0000000
+0.00000000 0.50000000 0.5000000
+!
+
+mpirun $VASP
+
+V=`grep volume/ion OUTCAR|awk '{print $5}'`
+E=`tail -n1 OSZICAR | awk '{ print $5/4}'`
+T=`grep 'CPU time' OUTCAR |awk '{print $6}'`
+totT=`echo $totT $T|awk '{print $1+$2}'`
+echo $a $T >> TvsA
+echo $a $E >> EvsA
+echo $V $E >> EvsV
+
+done
+
+cat <<! | evfit
+FCC
+4
+EvsA
+evfit.4
+!
+
+Emin=`grep Emin evfit.4|awk '{print $2}'`
+A0=`grep A0 evfit.4|awk '{print $2}'`
+K0=`grep A0 evfit.4|awk '{print $4}'`
+
+tail +5 evfit.4|awk '{print $1,"\t", $2,"\t", $3}' > grace
+
+echo "Data for Al in FCC" >> SUMMARY.fcc
+echo "=================================================" >> SUMMARY.fcc
+echo "Equilibrium Energy per Atom    = $Emin" >>SUMMARY.fcc
+echo "Equilibrium lattice constant   = $A0" >>SUMMARY.fcc
+echo "Bulk Modulus                   = $K0" >>SUMMARY.fcc
+echo "Total CPU time (sec)           = $totT" >>SUMMARY.fcc
+
+
+############################ Script End ##############################

@@ -30,4 +30,4 @@ for a in `seq -w 3.5 0.1 4.5`
 ## Curve fitting 
 - Originally: [evfit](https://icme.hpc.msstate.edu/mediawiki/index.php/Evfit)
 - TODO: Implement a python script to fit [Birch-Murnaghan equation of state](https://en.wikipedia.org/wiki/Birch%E2%80%93Murnaghan_equation_of_state) using energy volume data 
-
+- [Useful list of scripts (but in Python 2)](https://sites.google.com/site/dceresoli/tools-and-scripts) 

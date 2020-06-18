@@ -1,7 +1,6 @@
 #!/bin/bash
 #PBS -l select=1:ncpus=4:mpiprocs=4
 #PBS -l walltime=2:0:0
-#PBS -P 11001317
 
 export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
 export OMP_NUM_THREADS=1
